@@ -5,7 +5,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 #
 
-FROM golang:1.19 as build
+FROM golang:1.24 as build
 
 WORKDIR /provider-src
 
@@ -18,7 +18,7 @@ COPY vendor    ./vendor
 # Build provider
 RUN make test build
 
-FROM oraclelinux:7-slim
+FROM oraclelinux:9-slim
 
 LABEL author="OKE Foundations Team"
 

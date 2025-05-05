@@ -5,6 +5,7 @@ SPDX:UPL-1.0
 
 ---------------------------------- Copyright -----------------------------------
 Copyright (c) 2022 Oracle America, Inc. and its affiliates.
+Copyright (c) 2023 Oracle and/or its affiliates.
 
 -------------------------- Fourth Party Dependencies ---------------------------
 
@@ -411,28 +412,48 @@ Copyright (c) 2011, Open Knowledge Foundation Ltd.
 github.com/oracle/oci-go-sdk/v65
 
 == License Type
-=== Apache-2.0-85955f86
+=== Apache-2.0-9010f56e
 === UPL-1.0
 === Apache-2.0
-Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.  All rights reserved.
 This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl
 or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
  ____________________________
-The Universal Permissive License (UPL), Version 1.0
-Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2016, 2023 Oracle and/or its affiliates.
 
-Subject to the condition set forth below, permission is hereby granted to any person obtaining a copy of this software, associated documentation and/or data (collectively the "Software"), free of charge and under any and all copyright rights in the Software, and any and all patent rights owned or freely licensable by each licensor hereunder covering either (i) the unmodified Software as contributed to or provided by such licensor, or (ii) the Larger Works (as defined below), to deal in both
+The Universal Permissive License (UPL), Version 1.0
+
+Subject to the condition set forth below, permission is hereby granted to any
+person obtaining a copy of this software, associated documentation and/or data
+(collectively the "Software"), free of charge and under any and all copyright
+rights in the Software, and any and all patent rights owned or freely
+licensable by each licensor hereunder covering either (i) the unmodified
+Software as contributed to or provided by such licensor, or (ii) the Larger
+Works (as defined below), to deal in both
 
 (a) the Software, and
-(b) any piece of software and/or hardware listed in the lrgrwrks.txt file if one is included with the Software (each a "Larger Work" to which the Software is contributed by such licensors),
+(b) any piece of software and/or hardware listed in the lrgrwrks.txt file if
+one is included with the Software (each a "Larger Work" to which the Software
+is contributed by such licensors),
 
-without restriction, including without limitation the rights to copy, create derivative works of, display, perform, and distribute the Software and make, use, sell, offer for sale, import, export, have made, and have sold the Software and the Larger Work(s), and to sublicense the foregoing rights on either these or other terms.
+without restriction, including without limitation the rights to copy, create
+derivative works of, display, perform, and distribute the Software and make,
+use, sell, offer for sale, import, export, have made, and have sold the
+Software and the Larger Work(s), and to sublicense the foregoing rights on
+either these or other terms.
 
 This license is subject to the following condition:
+The above copyright notice and either this complete permission notice or at
+a minimum a reference to the UPL must be included in all copies or
+substantial portions of the Software.
 
-The above copyright notice and either this complete permission notice or at a minimum a reference to the UPL must be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 The Apache Software License, Version 2.0
 Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
@@ -504,9 +525,10 @@ Copyright (c) 2012-2020 Mat Ryer, Tyler Bunnell and contributors.
 Copyright (c) 2013 The Go Authors. All rights reserved.
 Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.
 Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
-Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
-Copyright (c) 2016, 2018, 2022, Oracle and/or its affiliates.  All rights reserved.
+Copyright (c) 2016, 2018, 2024, Oracle and/or its affiliates.  All rights reserved.
 Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2016, 2023 Oracle and/or its affiliates.
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.  All rights reserved.
 Copyright © 2012-2020 Mat Ryer, Tyler Bunnell and contributors.
 Copyright © 2013 The Go Authors. All rights reserved.
 
@@ -756,10 +778,39 @@ SPDX:Apache-2.0
 golang.org/x/net
 
 == License Type
-SPDX:BSD-3-Clause--modified-by-Google
+=== BSD-3-Clause--modified-by-Google-7998cb33
+Copyright 2009 The Go Authors.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google LLC nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
 
 == Copyright
-Copyright (c) 2009 The Go Authors. All rights reserved.
+Copyright 2009 The Go Authors.
 Copyright 2009 The Go Authors. All rights reserved.
 Copyright 2010 The Go Authors. All rights reserved.
 Copyright 2011 The Go Authors. All rights reserved.
@@ -773,6 +824,10 @@ Copyright 2018 The Go Authors. All rights reserved.
 Copyright 2019 The Go Authors. All rights reserved.
 Copyright 2020 The Go Authors. All rights reserved.
 Copyright 2021 The Go Authors. All rights reserved.
+Copyright 2022 The Go Authors. All rights reserved.
+Copyright 2023 The Go Authors. All rights reserved.
+Copyright 2024 The Go Authors. All rights reserved.
+Copyright 2025 The Go Authors. All rights reserved.
 
 == Patents
 Additional IP Rights Grant (Patents)
@@ -805,10 +860,39 @@ shall terminate as of the date such litigation is filed.
 golang.org/x/oauth2
 
 == License Type
-SPDX:BSD-3-Clause--modified-by-Google
+=== BSD-3-Clause--modified-by-Google-7998cb33
+Copyright 2009 The Go Authors.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google LLC nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
 
 == Copyright
-Copyright (c) 2009 The Go Authors. All rights reserved.
+Copyright 2009 The Go Authors.
 Copyright 2014 The Go Authors. All rights reserved.
 Copyright 2015 The Go Authors. All rights reserved.
 Copyright 2015 The oauth2 Authors. All rights reserved.
@@ -820,6 +904,9 @@ Copyright 2018 The oauth2 Authors. All rights reserved.
 Copyright 2019 The Go Authors. All rights reserved.
 Copyright 2020 The Go Authors. All rights reserved.
 Copyright 2021 The Go Authors. All rights reserved.
+Copyright 2022 The Go Authors. All rights reserved.
+Copyright 2023 The Go Authors. All rights reserved.
+Copyright 2024 The Go Authors. All rights reserved.
 
 --------------------------------- (separator) ----------------------------------
 
@@ -827,10 +914,39 @@ Copyright 2021 The Go Authors. All rights reserved.
 golang.org/x/sys
 
 == License Type
-SPDX:BSD-3-Clause--modified-by-Google
+=== BSD-3-Clause--modified-by-Google-7998cb33
+Copyright 2009 The Go Authors.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google LLC nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
 
 == Copyright
-Copyright (c) 2009 The Go Authors. All rights reserved.
+Copyright 2009 The Go Authors.
 Copyright 2009 The Go Authors. All rights reserved.
 Copyright 2009,2010 The Go Authors. All rights reserved.
 Copyright 2010 The Go Authors. All rights reserved.
@@ -847,6 +963,9 @@ Copyright 2019 The Go Authors. All rights reserved.
 Copyright 2020 The Go Authors. All rights reserved.
 Copyright 2021 The Go Authors. All rights reserved.
 Copyright 2022 The Go Authors. All rights reserved.
+Copyright 2023 The Go Authors. All rights reserved.
+Copyright 2024 The Go Authors. All rights reserved.
+Copyright 2025 The Go Authors. All rights reserved.
 
 == Patents
 Additional IP Rights Grant (Patents)
@@ -879,10 +998,39 @@ shall terminate as of the date such litigation is filed.
 golang.org/x/term
 
 == License Type
-SPDX:BSD-3-Clause--modified-by-Google
+=== BSD-3-Clause--modified-by-Google-7998cb33
+Copyright 2009 The Go Authors.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google LLC nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
 
 == Copyright
-Copyright (c) 2009 The Go Authors. All rights reserved.
+Copyright 2009 The Go Authors.
 Copyright 2011 The Go Authors. All rights reserved.
 Copyright 2013 The Go Authors. All rights reserved.
 Copyright 2019 The Go Authors. All rights reserved.
@@ -919,10 +1067,39 @@ shall terminate as of the date such litigation is filed.
 golang.org/x/text
 
 == License Type
-SPDX:BSD-3-Clause--modified-by-Google
+=== BSD-3-Clause--modified-by-Google-7998cb33
+Copyright 2009 The Go Authors.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google LLC nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
 
 == Copyright
-Copyright (c) 2009 The Go Authors. All rights reserved.
+Copyright 2009 The Go Authors.
 Copyright 2009 The Go Authors. All rights reserved.
 Copyright 2011 The Go Authors. All rights reserved.
 Copyright 2012 The Go Authors. All rights reserved.
@@ -933,6 +1110,7 @@ Copyright 2016 The Go Authors. All rights reserved.
 Copyright 2017 The Go Authors. All rights reserved.
 Copyright 2018 The Go Authors. All rights reserved.
 Copyright 2019 The Go Authors. All rights reserved.
+Copyright 2021 The Go Authors. All rights reserved.
 
 == Patents
 Additional IP Rights Grant (Patents)
@@ -1011,13 +1189,17 @@ Copyright 2016 Google Inc.
 Copyright 2016 Google LLC
 Copyright 2017 Google Inc.
 Copyright 2018 Google Inc.
-Copyright 2018 Google LLC
 Copyright 2018 The Grafeas Authors. All rights reserved.
 Copyright 2019 Google LLC.
+Copyright 2019 The Grafeas Authors. All rights reserved.
 Copyright 2020 Google LLC
 Copyright 2020 Google LLC.
 Copyright 2021 Google LLC
 Copyright 2021 Google LLC.
+Copyright 2021 The Grafeas Authors. All rights reserved.
+Copyright 2022 Google LLC
+Copyright 2023 Google LLC
+Copyright 2023 The Grafeas Authors. All rights reserved.
 
 --------------------------------- (separator) ----------------------------------
 
@@ -1042,6 +1224,7 @@ Copyright 2020 The gRPC Authors
 Copyright 2020 gRPC authors.
 Copyright 2021 gRPC authors.
 Copyright 2022 gRPC authors.
+Copyright 2023 gRPC authors.
 
 == Notices
 Copyright 2014 gRPC authors.
@@ -1076,6 +1259,10 @@ Copyright 2019 The Go Authors. All rights reserved.
 Copyright 2019 The Go Authors. All rights reserved.",
 Copyright 2020 The Go Authors. All rights reserved.
 Copyright 2021 The Go Authors. All rights reserved.
+Copyright 2022 The Go Authors. All rights reserved.
+Copyright 2023 Google Inc.  All rights reserved.
+Copyright 2023 The Go Authors. All rights reserved.
+Copyright 2024 The Go Authors. All rights reserved.
 
 == Patents
 Additional IP Rights Grant (Patents)
@@ -1240,6 +1427,7 @@ Copyright 2018 The Kubernetes Authors.
 Copyright 2019 The Kubernetes Authors.
 Copyright 2020 The Kubernetes Authors.
 Copyright 2021 The Kubernetes Authors.
+Copyright 2022 The Kubernetes Authors.
 
 --------------------------------- (separator) ----------------------------------
 
@@ -1342,6 +1530,7 @@ Copyright 2018 The Kubernetes Authors.
 Copyright 2019 The Kubernetes Authors.
 Copyright 2020 The Kubernetes Authors.
 Copyright 2021 The Kubernetes Authors.
+Copyright 2022 The Kubernetes Authors.
 
 --------------------------------- (separator) ----------------------------------
 
@@ -1600,6 +1789,7 @@ Copyright 2013 The Go Authors. All rights reserved.
 Copyright 2016 The Go Authors. All rights reserved.
 Copyright 2018 The Go Authors. All rights reserved.
 Copyright 2019 The Go Authors. All rights reserved.
+Copyright 2021 The Go Authors. All rights reserved.
 Copyright 2021 The Kubernetes Authors.
 
 --------------------------------- (separator) ----------------------------------
@@ -1950,5 +2140,5 @@ The above copyright notice and either this complete permission notice or at a mi
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 === ATTRIBUTION-HELPER-GENERATED:
-=== Attribution helper version: {Major:0 Minor:11 GitVersion:0.10.0-92-g92f80ee4 GitCommit:92f80ee4d79a936be2aa36fc3b46588ca9455e46 GitTreeState:clean BuildDate:2022-11-04T20:47:41Z GoVersion:go1.19 Compiler:gc Platform:darwin/arm64}
-=== License file based on go.mod with md5 sum:  325da45a4d1371ffaa9f64cfc19d8e26
+=== Attribution helper version: {Major:0 Minor:11 GitVersion: GitCommit: GitTreeState:dirty BuildDate:1970-01-01T00:00:00Z GoVersion:go1.19.3 Compiler:gc Platform:darwin/arm64}
+=== License file based on go.mod with md5 sum:  333d9f92320df8fec564f182c64775ad
