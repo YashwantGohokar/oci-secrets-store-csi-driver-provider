@@ -17,6 +17,7 @@ import (
 	"github.com/oracle-samples/oci-secrets-store-csi-driver-provider/internal/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	corev1client "k8s.io/client-go/kubernetes/typed/core/v1"
 	provider "sigs.k8s.io/secrets-store-csi-driver/provider/v1alpha1"
 )
 
@@ -29,6 +30,33 @@ const readOnlyPermission = 0444
 
 // Note that real-life Secrets Store CSI Driver sends more detailed and complicated MountRequest
 // than we use for testing purposes.
+
+type cachedK8sClient struct{}
+
+func (cachedK8sClient) CoreV1() corev1client.CoreV1Interface {
+	return nil
+}
+
+func TestGetK8sClientSet_ReturnsCachedClientSet(t *testing.T) {
+	cachedClientSet := cachedK8sClient{}
+	providerServer := &ProviderServer{k8sClientSet: cachedClientSet}
+
+	firstClientSet, err := providerServer.getK8sClientSet()
+	if err != nil {
+		t.Fatalf("Unexpected error: %v", err)
+	}
+	secondClientSet, err := providerServer.getK8sClientSet()
+	if err != nil {
+		t.Fatalf("Unexpected error: %v", err)
+	}
+
+	if firstClientSet != cachedClientSet {
+		t.Fatalf("Expected cached clientset, got a different clientset")
+	}
+	if secondClientSet != cachedClientSet {
+		t.Fatalf("Expected cached clientset on repeated call, got a different clientset")
+	}
+}
 
 func TestMount_RequestTwoExistingSecrets_ReturnTwoSecrets(t *testing.T) {
 	secretBundleRequests := []*types.SecretBundleRequest{
@@ -52,7 +80,7 @@ func TestMount_RequestTwoExistingSecrets_ReturnTwoSecrets(t *testing.T) {
 		requestsMock: secretBundleRequests,
 		bundlesMock:  mockBundles,
 	}
-	providerServer := &ProviderServer{mockService}
+	providerServer := &ProviderServer{secretService: mockService}
 
 	var auth *types.Auth = &types.Auth{Type: types.Instance}
 	var vaultID = "vault1"
@@ -92,7 +120,7 @@ func TestMount_RequestOneExistingSecretAndOneAbsent_ReturnError(t *testing.T) {
 	}
 
 	var mockService service.SecretService = &mockSecretService{}
-	providerServer := &ProviderServer{mockService}
+	providerServer := &ProviderServer{secretService: mockService}
 
 	var auth *types.Auth = &types.Auth{Type: types.Instance}
 	var vaultID = "vault1"
@@ -120,7 +148,7 @@ func TestMount_RequestOneExistingSecretAndOneAbsent_ReturnError(t *testing.T) {
 
 func TestMount_InvalidFormatAttributes_ReturnError(t *testing.T) {
 	var mockService service.SecretService = &mockSecretService{}
-	providerServer := &ProviderServer{mockService}
+	providerServer := &ProviderServer{secretService: mockService}
 
 	request := provider.MountRequest{
 		Attributes: "invalid-value",
@@ -143,7 +171,7 @@ func TestMount_InvalidFormatAttributes_ReturnError(t *testing.T) {
 
 func TestMount_InvalidSecretsAttribute_ReturnError(t *testing.T) {
 	var mockService service.SecretService = &mockSecretService{}
-	providerServer := &ProviderServer{mockService}
+	providerServer := &ProviderServer{secretService: mockService}
 
 	invalidMountRequests, err := prepareInvalidMountRequests()
 	if err != nil {
@@ -187,7 +215,7 @@ func TestMount_RequestTwoSecretsWithAliasForOnlyOne_ReturnTwoSecretsWithOnePathO
 		requestsMock: secretBundleRequests,
 		bundlesMock:  mockBundles,
 	}
-	providerServer := &ProviderServer{mockService}
+	providerServer := &ProviderServer{secretService: mockService}
 
 	var auth *types.Auth = &types.Auth{Type: types.Instance}
 	var vaultID = "vault1"
@@ -242,7 +270,7 @@ func TestMount_RequestTwoSecretsWithAliases_ReturnTwoSecretsWithAliases(t *testi
 		requestsMock: secretBundleRequests,
 		bundlesMock:  mockBundles,
 	}
-	providerServer := &ProviderServer{mockService}
+	providerServer := &ProviderServer{secretService: mockService}
 
 	var auth *types.Auth = &types.Auth{Type: types.Instance}
 	var vaultID = "vault1"

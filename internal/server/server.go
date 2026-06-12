@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
+	"sync"
 	"time"
 
 	"os"
@@ -27,13 +28,20 @@ import (
 	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
 	apiMachineryTypes "k8s.io/apimachinery/pkg/types"
 	"k8s.io/client-go/kubernetes"
+	corev1client "k8s.io/client-go/kubernetes/typed/core/v1"
 	"k8s.io/client-go/rest"
 	provider "sigs.k8s.io/secrets-store-csi-driver/provider/v1alpha1"
 )
 
+type kubernetesCoreClient interface {
+	CoreV1() corev1client.CoreV1Interface
+}
+
 // ProviderServer implements predefined provider API
 type ProviderServer struct {
 	secretService service.SecretService
+	k8sClientSet  kubernetesCoreClient
+	k8sClientMu   sync.Mutex
 }
 
 func NewOCIVaultProviderServer() (*ProviderServer, error) {
@@ -42,7 +50,7 @@ func NewOCIVaultProviderServer() (*ProviderServer, error) {
 		return nil, err
 	}
 	log.Info().Msg("Created OCI Vault service")
-	return &ProviderServer{ociService}, nil
+	return &ProviderServer{secretService: ociService}, nil
 }
 
 // attributes' fields
@@ -219,7 +227,14 @@ func parseAuthConfig(secret *core.Secret, authConfigSecretName string) (*types.A
 	return authCfg, nil
 }
 
-func (server *ProviderServer) getK8sClientSet() (*kubernetes.Clientset, error) {
+func (server *ProviderServer) getK8sClientSet() (kubernetesCoreClient, error) {
+	server.k8sClientMu.Lock()
+	defer server.k8sClientMu.Unlock()
+
+	if server.k8sClientSet != nil {
+		return server.k8sClientSet, nil
+	}
+
 	clusterCfg, err := rest.InClusterConfig()
 	if err != nil {
 		return nil, fmt.Errorf("can not get cluster config. error: %v", err)
@@ -230,7 +245,8 @@ func (server *ProviderServer) getK8sClientSet() (*kubernetes.Clientset, error) {
 		return nil, fmt.Errorf("can not initialize kubernetes client. error: %v", err)
 	}
 
-	return clientset, nil
+	server.k8sClientSet = clientset
+	return server.k8sClientSet, nil
 }
 
 func (server *ProviderServer) getSAToken(podInfo *types.PodInfo) (string, error) {
@@ -264,14 +280,9 @@ func (server *ProviderServer) getSAToken(podInfo *types.PodInfo) (string, error)
 
 func (server *ProviderServer) readK8sSecret(ctx context.Context, namespace string,
 	secretName string) (*core.Secret, error) {
-	clusterCfg, err := rest.InClusterConfig()
+	clientset, err := server.getK8sClientSet()
 	if err != nil {
-		return &core.Secret{}, fmt.Errorf("can not get cluster config. error: %v", err)
-	}
-
-	clientset, err := kubernetes.NewForConfig(clusterCfg)
-	if err != nil {
-		return &core.Secret{}, fmt.Errorf("can not initialize kubernetes client. error: %v", err)
+		return &core.Secret{}, fmt.Errorf("unable to get k8s client: %v", err)
 	}
 
 	k8client := clientset.CoreV1()
