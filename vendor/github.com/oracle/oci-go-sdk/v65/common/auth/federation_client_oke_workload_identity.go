@@ -73,13 +73,18 @@ type token struct {
 
 // getSecurityToken get security token from Proxymux
 func (c *x509FederationClientForOkeWorkloadIdentity) getSecurityToken() (securityToken, error) {
-	client := http.Client{
-		Timeout: 30 * time.Second,
-		Transport: &http.Transport{
-			TLSClientConfig: &tls.Config{
-				RootCAs: c.kubernetesServiceAccountCert,
-			},
+	transport := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			RootCAs: c.kubernetesServiceAccountCert,
 		},
+	}
+	// This transport is created for one proxymux token exchange. Close its idle
+	// pool before returning so keep-alive connections do not retain goroutines.
+	defer transport.CloseIdleConnections()
+
+	client := http.Client{
+		Timeout:   30 * time.Second,
+		Transport: transport,
 	}
 
 	publicKey := string(c.sessionKeySupplier.PublicKeyPemRaw())
