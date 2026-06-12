@@ -1,0 +1,21 @@
+name: Manual Image Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_registry:
+        description: "Container registry, for example ghcr.io/YashwantGohokar"
+        required: true
+        type: string
+        default: ghcr.io/YashwantGohokar
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-n-push.yaml
+    with:
+      IMAGE_REGISTRY: ${{ inputs.image_registry }}
+    secrets: inherit
