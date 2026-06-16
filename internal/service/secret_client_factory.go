@@ -23,6 +23,7 @@ type SecretClientFactory interface {
 	createSecretClient(
 		configProvider common.ConfigurationProvider) (OCISecretClient, error)
 	createConfigProvider(auth *types.Auth) (common.ConfigurationProvider, error)
+	createWorkloadIdentityConfigProvider(serviceAccountToken string) (common.ConfigurationProvider, error)
 }
 
 type OCISecretClientFactory struct{}
@@ -49,12 +50,18 @@ func (factory *OCISecretClientFactory) createConfigProvider( //nolint:ireturn //
 			cfg.Region, cfg.Fingerprint, cfg.PrivateKey, &cfg.Passphrase), nil
 
 	case types.Workload:
-		return auth.OkeWorkloadIdentityConfigurationProviderWithServiceAccountTokenProvider(
-			auth.NewSuppliedServiceAccountTokenProvider(string(authCfg.WorkloadIdentityCfg.SaToken)))
+		return nil, fmt.Errorf("workload identity configuration providers are managed by the workload identity cache")
 
 	default:
 		return nil, fmt.Errorf("unable to determine OCI principal type for configuration provider")
 	}
+}
+
+func (factory *OCISecretClientFactory) createWorkloadIdentityConfigProvider( //nolint:ireturn // factory method
+	serviceAccountToken string) (common.ConfigurationProvider, error) {
+
+	return auth.OkeWorkloadIdentityConfigurationProviderWithServiceAccountTokenProvider(
+		auth.NewSuppliedServiceAccountTokenProvider(serviceAccountToken))
 }
 
 func setHTTPClientTimeout(

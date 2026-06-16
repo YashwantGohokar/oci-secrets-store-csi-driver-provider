@@ -208,8 +208,7 @@ type Auth struct {
 }
 
 type WorkloadIdentityConfig struct {
-	// Region  string
-	SaToken []byte
+	PodInfo PodInfo
 }
 
 type AuthConfig struct {

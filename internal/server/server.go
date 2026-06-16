@@ -45,12 +45,14 @@ type ProviderServer struct {
 }
 
 func NewOCIVaultProviderServer() (*ProviderServer, error) {
-	ociService, err := service.NewOCISecretService()
+	server := &ProviderServer{}
+	ociService, err := service.NewOCISecretServiceWithTokenSource(server)
 	if err != nil {
 		return nil, err
 	}
 	log.Info().Msg("Created OCI Vault service")
-	return &ProviderServer{secretService: ociService}, nil
+	server.secretService = ociService
+	return server, nil
 }
 
 // attributes' fields
@@ -181,22 +183,15 @@ func (server *ProviderServer) retrieveAuthConfig(ctx context.Context,
 		auth.Config = *authCfg
 	} else if principalType == types.Workload {
 
-		podInfo := &types.PodInfo{
+		podInfo := types.PodInfo{
 			Name:               requestAttributes[podNameField],
 			UID:                apiMachineryTypes.UID(requestAttributes[podUIDField]),
 			ServiceAccountName: requestAttributes[podServiceAccountField],
 			Namespace:          requestAttributes[podNamespaceField],
 		}
-		saTokenStr, err := server.getSAToken(podInfo)
-		if err != nil {
-			err := fmt.Errorf("can not generate token for service account: %s, namespace: %s, Error: %v",
-				podInfo.ServiceAccountName, podInfo.Namespace, err)
-			return nil, err
-		}
 
 		auth.WorkloadIdentityCfg = types.WorkloadIdentityConfig{
-			SaToken: []byte(saTokenStr),
-			// Region: region,
+			PodInfo: podInfo,
 		}
 	}
 	return auth, nil
@@ -249,18 +244,20 @@ func (server *ProviderServer) getK8sClientSet() (kubernetesCoreClient, error) {
 	return server.k8sClientSet, nil
 }
 
-func (server *ProviderServer) getSAToken(podInfo *types.PodInfo) (string, error) {
+func (server *ProviderServer) TokenForPod(
+	ctx context.Context, podInfo types.PodInfo, ttl time.Duration) (*service.ServiceAccountToken, error) {
+
 	clientSet, err := server.getK8sClientSet()
 	if err != nil {
-		return "", fmt.Errorf("unable to get k8s client: %v", err)
+		return nil, fmt.Errorf("unable to get k8s client: %v", err)
 	}
-	ttl := int64((15 * time.Minute).Seconds())
+	expirationSeconds := int64(ttl.Seconds())
 	resp, err := clientSet.CoreV1().
 		ServiceAccounts(podInfo.Namespace).
-		CreateToken(context.Background(), podInfo.ServiceAccountName,
+		CreateToken(ctx, podInfo.ServiceAccountName,
 			&authenticationv1.TokenRequest{
 				Spec: authenticationv1.TokenRequestSpec{
-					ExpirationSeconds: &ttl,
+					ExpirationSeconds: &expirationSeconds,
 					Audiences:         []string{},
 					BoundObjectRef: &authenticationv1.BoundObjectReference{
 						Kind:       "Pod",
@@ -273,9 +270,18 @@ func (server *ProviderServer) getSAToken(podInfo *types.PodInfo) (string, error)
 			meta.CreateOptions{},
 		)
 	if err != nil {
-		return "", fmt.Errorf("unable to fetch token from token api: %v", err)
+		return nil, fmt.Errorf("unable to fetch token from token api: %v", err)
 	}
-	return resp.Status.Token, nil
+
+	expiresAt := time.Now().Add(ttl)
+	if !resp.Status.ExpirationTimestamp.IsZero() {
+		expiresAt = resp.Status.ExpirationTimestamp.Time
+	}
+
+	return &service.ServiceAccountToken{
+		Token:     resp.Status.Token,
+		ExpiresAt: expiresAt,
+	}, nil
 }
 
 func (server *ProviderServer) readK8sSecret(ctx context.Context, namespace string,

@@ -32,12 +32,24 @@ type SecretService interface {
 
 // OCISecretService is implementation of SecretService
 type OCISecretService struct {
-	factory SecretClientFactory
+	factory               SecretClientFactory
+	workloadIdentityCache *workloadIdentityClientCache
 }
 
 func NewOCISecretService() (*OCISecretService, error) {
 	return &OCISecretService{
 		factory: &OCISecretClientFactory{},
+	}, nil
+}
+
+func NewOCISecretServiceWithTokenSource(tokenSource ServiceAccountTokenSource) (*OCISecretService, error) {
+	factory := &OCISecretClientFactory{}
+	workloadIdentityCache := newWorkloadIdentityClientCache(tokenSource, factory)
+	workloadIdentityCache.StartReaper(workloadIdentityCacheReaperInterval)
+
+	return &OCISecretService{
+		factory:               factory,
+		workloadIdentityCache: workloadIdentityCache,
 	}, nil
 }
 
@@ -54,19 +66,11 @@ func (service *OCISecretService) GetSecretBundles(
 		return nil, err
 	}
 
-	configProvider, err := service.factory.createConfigProvider(auth)
+	secretClient, release, err := service.getSecretClient(ctx, auth)
 	if err != nil {
-		log.Error().Stack().Err(err).Msg("Unable to create OCI configuration provider")
 		return nil, err
 	}
-	log.Info().Str("principalType", string(auth.Type)).Msg("Created OCI configuration provider")
-
-	secretClient, err := service.factory.createSecretClient(configProvider)
-	if err != nil {
-		log.Error().Stack().Err(err).Msg("Unable to create OCI Vault client")
-		return nil, err
-	}
-	log.Info().Msg("Created OCI Secrets client")
+	defer release()
 
 	secretBundles := make([]*types.SecretBundle, len(requests))
 	for i, request := range requests {
@@ -77,6 +81,39 @@ func (service *OCISecretService) GetSecretBundles(
 		secretBundles[i] = secretBundle
 	}
 	return secretBundles, nil
+}
+
+func (service *OCISecretService) getSecretClient(
+	ctx context.Context, auth *types.Auth) (OCISecretClient, func(), error) {
+
+	if auth != nil && auth.Type == types.Workload {
+		if service.workloadIdentityCache == nil {
+			return nil, nil, fmt.Errorf("workload identity client cache is not configured")
+		}
+
+		lease, err := service.workloadIdentityCache.GetOrCreate(ctx, auth)
+		if err != nil {
+			log.Error().Stack().Err(err).Msg("Unable to get cached workload identity OCI Vault client")
+			return nil, nil, err
+		}
+		return lease.SecretClient(), lease.Release, nil
+	}
+
+	configProvider, err := service.factory.createConfigProvider(auth)
+	if err != nil {
+		log.Error().Stack().Err(err).Msg("Unable to create OCI configuration provider")
+		return nil, nil, err
+	}
+	log.Info().Str("principalType", string(auth.Type)).Msg("Created OCI configuration provider")
+
+	secretClient, err := service.factory.createSecretClient(configProvider)
+	if err != nil {
+		log.Error().Stack().Err(err).Msg("Unable to create OCI Vault client")
+		return nil, nil, err
+	}
+	log.Info().Msg("Created OCI Secrets client")
+
+	return secretClient, func() {}, nil
 }
 
 func (service *OCISecretService) getSecretBundle(
